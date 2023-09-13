@@ -20,10 +20,11 @@ import universidadulpv2.entidades.Materia;
  * @author shion
  */
 public class ManejoInscripcion extends javax.swing.JInternalFrame {
-AlumnoData controlAlumn=null;
-MateriaData controlMateria=null;
-InscripcionData controlIns=null;
-int idAlumnito;
+    public DefaultTableModel modelo = new DefaultTableModel();
+    AlumnoData controlAlumn = null;
+    MateriaData controlMateria = null;
+    InscripcionData controlIns = null;
+    int idAlumnito;
     /**
      * Creates new form ManejoInscripcion
      */
@@ -33,7 +34,8 @@ int idAlumnito;
         controlIns=new InscripcionData();
         initComponents();
         cargarCombo();
-        cargarTabla();
+        encabezadoTabla();
+        borrarFilas();
     }
 
     /**
@@ -88,10 +90,7 @@ int idAlumnito;
 
         tbMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -190,8 +189,19 @@ int idAlumnito;
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbxAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAlumnosActionPerformed
-        Alumno alumnoSeleccionado=(Alumno)cbxAlumnos.getSelectedItem();
-        idAlumnito=alumnoSeleccionado.getIdAlumno();
+        borrarFilas();
+        Alumno alumnoSeleccionado = (Alumno) cbxAlumnos.getSelectedItem();
+        idAlumnito = alumnoSeleccionado.getIdAlumno();
+     
+        for (Inscripcion insc : controlIns.traerInscripciones()) {
+            if (insc.getIdAlumno().getIdAlumno() == idAlumnito) {
+                controlIns.obtenerMateriasCursadas(insc.getIdMateria().getIdMateria());
+                modelo.addRow(new Object[]{
+                    insc.getIdMateria().getCodigo(),
+                    insc.getIdMateria().getNombre(),
+                    insc.getIdMateria().getAnioMateria()});
+            }           
+        }       
     }//GEN-LAST:event_cbxAlumnosActionPerformed
 
     private void btnInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscribirActionPerformed
@@ -223,16 +233,11 @@ int idAlumnito;
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void rbtnMaterInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMaterInsActionPerformed
-        for (Inscripcion insc:controlIns.traerInscripciones()) {
-            if (insc.getIdAlumno().getIdAlumno()==idAlumnito) {
-                System.out.println("nya");
-                System.out.println(insc.getIdMateria().getNombre());
-            }
-        }
+
     }//GEN-LAST:event_rbtnMaterInsActionPerformed
 
     private void rbtnMaterNoInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMaterNoInsActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_rbtnMaterNoInsActionPerformed
 
     private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed
@@ -267,33 +272,14 @@ int idAlumnito;
     private javax.swing.JRadioButton rbtnMaterNoIns;
     private javax.swing.JTable tbMaterias;
     // End of variables declaration//GEN-END:variables
-private void cargarCombo() {
+    
+    private void cargarCombo() {
         for (Alumno listita : controlAlumn.traerAlumnos()) {
             cbxAlumnos.addItem(new Alumno(listita.getIdAlumno(), listita.getDni(), listita.getApellido(), listita.getNombre()));
         }
     }
-
-    public void cargarTabla() {
-        DefaultTableModel modelo = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        String titulos[]={"Codigo","Nombre","Año"};
-        modelo.setColumnIdentifiers(titulos);
-        
-        List <Materia> listaMaterias= controlMateria.traerMaterias();
-        if (listaMaterias!=null) {
-            for (Materia mat : listaMaterias) {
-                Object[] objetos= {mat.getCodigo(),mat.getNombre(),mat.getAnioMateria()};
-                modelo.addRow(objetos);
-            }
-        }
-        tbMaterias.setModel(modelo);
-    }     
-       
-        public void mostrarMensaje(String mensaje, String tipo, String titulo) {
+           
+    public void mostrarMensaje(String mensaje, String tipo, String titulo) {
         JOptionPane optionPane = new JOptionPane(mensaje);
         if (tipo.equals("Info")) {
             optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
@@ -302,8 +288,21 @@ private void cargarCombo() {
         }
         JDialog dialogo = optionPane.createDialog(titulo);
         dialogo.setAlwaysOnTop(true);
-        dialogo.setVisible(true);
-        
+        dialogo.setVisible(true);       
+    }
+    
+    private void encabezadoTabla(){
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Año");
+        tbMaterias.setModel(modelo);
+    }
+    
+    public void borrarFilas() {
+        int rowCount = modelo.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
     }
 
 }
