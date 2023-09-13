@@ -4,7 +4,7 @@
  */
 package universidadulpv2.vistas;
 
-import java.util.List;
+
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
