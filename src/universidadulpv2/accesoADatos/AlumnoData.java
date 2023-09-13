@@ -78,8 +78,7 @@ public class AlumnoData {
     }
     
     public Alumno buscarAlumnoID(int id){
-        String sql="SELECT dni, apellido, nombre, fechaNacimiento FROM alumno WHERE idAlumno=?"
-                + "AND estado=1;";
+        String sql="SELECT dni, apellido, nombre, fechaNacimiento FROM alumno WHERE idAlumno=?";
         Alumno alumnito=null;
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -93,9 +92,9 @@ public class AlumnoData {
                 alumnito.setNombre(rs.getString("nombre"));
                 alumnito.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
                 alumnito.setActivo(true);
-            }else{
+            }/*else{
                 JOptionPane.showMessageDialog(null, "No existe el ID del alumno");
-            }
+            }*/
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alumno");

@@ -1,22 +1,27 @@
 
 package universidadulpv2.vistas;
 
-import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import universidadulpv2.accesoADatos.AlumnoData;
+import universidadulpv2.accesoADatos.InscripcionData;
 import universidadulpv2.accesoADatos.MateriaData;
-import universidadulpv2.entidades.Alumno;
+import universidadulpv2.entidades.Inscripcion;
 import universidadulpv2.entidades.Materia;
 
 public class AlumnoXMateria extends javax.swing.JInternalFrame {
+    public DefaultTableModel modelo = new DefaultTableModel();
+    int idMateriaLoca;
     AlumnoData controlAlumno=null;
     MateriaData controlMateria=null;
+    InscripcionData controlIns = null;
+    
     public AlumnoXMateria() {
         controlAlumno=new AlumnoData();
         controlMateria=new MateriaData();
+        controlIns=new InscripcionData();
         initComponents();
         cargarCombo();
-        cargarTabla();
+        encabezadoTabla();
     }
 
     /**
@@ -60,6 +65,12 @@ public class AlumnoXMateria extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tbAlumnos);
 
         jLabel2.setText("Seleccione una Materia");
+
+        cbxMaterias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxMateriasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,6 +125,21 @@ public class AlumnoXMateria extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void cbxMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMateriasActionPerformed
+        borrarFilas();
+        Materia materiaSeleccionada = (Materia) cbxMaterias.getSelectedItem();
+        idMateriaLoca = materiaSeleccionada.getIdMateria();   
+        for (Inscripcion insc : controlIns.traerInscripciones()) {
+            if (insc.getIdMateria().getIdMateria()==idMateriaLoca) {
+                controlAlumno.buscarAlumnoID(insc.getIdMateria().getIdMateria());
+                modelo.addRow(new Object[]{
+                    insc.getIdAlumno().getIdAlumno(),
+                    insc.getIdAlumno().getDni(),
+                    insc.getIdAlumno().getApellido(),
+                    insc.getIdAlumno().getNombre()});
+            }           
+        }
+    }//GEN-LAST:event_cbxMateriasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Materia> cbxMaterias;
@@ -125,29 +151,24 @@ public class AlumnoXMateria extends javax.swing.JInternalFrame {
     private javax.swing.JTable tbAlumnos;
     // End of variables declaration//GEN-END:variables
 
-private void cargarCombo() {
+    private void cargarCombo() {
         for (Materia listita : controlMateria.traerMaterias()) {
-            cbxMaterias.addItem(new Materia(listita.getNombre(),listita.getAnioMateria()));
+            cbxMaterias.addItem(new Materia(listita.getIdMateria(),listita.getNombre(), listita.getAnioMateria()));
         }
     }
-
-    public void cargarTabla() {
-        DefaultTableModel modelo = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        String titulos[]={"ID","DNI","Apellido","Nombre"};
-        modelo.setColumnIdentifiers(titulos);
-        
-        List <Alumno> listaAlumn= controlAlumno.traerAlumnos();
-        if (listaAlumn!=null) {
-            for (Alumno alumnito : listaAlumn) {
-                Object[] objetos= {alumnito.getIdAlumno(),alumnito.getDni(),alumnito.getApellido(),alumnito.getNombre()};
-                modelo.addRow(objetos);
-            }
-        }
+    
+        private void encabezadoTabla(){
+        modelo.addColumn("ID");
+        modelo.addColumn("DNI");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Nombre");
         tbAlumnos.setModel(modelo);
+    }
+    
+    public void borrarFilas() {
+        int rowCount = modelo.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
     }
 }
