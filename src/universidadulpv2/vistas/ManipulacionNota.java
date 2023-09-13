@@ -21,6 +21,7 @@ public class ManipulacionNota extends javax.swing.JInternalFrame {
 AlumnoData controlAlumn=null;
 MateriaData controlMateria=null;
 InscripcionData controlInsc=null;
+int idAlumnoBuscar=0;
     /**
      * Creates new form ManipulacionNota
      */
@@ -48,7 +49,7 @@ InscripcionData controlInsc=null;
         cbxAlumnos = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbMaterias = new javax.swing.JTable();
-        btnGuardar = new javax.swing.JButton();
+        editarNota = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
@@ -75,7 +76,12 @@ InscripcionData controlInsc=null;
         ));
         jScrollPane1.setViewportView(tbMaterias);
 
-        btnGuardar.setText("Guardar");
+        editarNota.setText("Editar");
+        editarNota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarNotaActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -96,11 +102,13 @@ InscripcionData controlInsc=null;
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(cbxAlumnos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(59, 59, 59)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(61, 61, 61)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editarNota, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
@@ -123,9 +131,9 @@ InscripcionData controlInsc=null;
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editarNota, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -137,14 +145,26 @@ InscripcionData controlInsc=null;
 
     private void cbxAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAlumnosActionPerformed
         Alumno alumnoSeleccionado=(Alumno)cbxAlumnos.getSelectedItem();
-        
+        idAlumnoBuscar=alumnoSeleccionado.getIdAlumno();
+        cargarTablaAlumnoSeleccionado();
     }//GEN-LAST:event_cbxAlumnosActionPerformed
+
+    private void editarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarNotaActionPerformed
+        // TODO add your handling code here:
+     int NotaCambiar=Integer.parseInt(String.valueOf(tbMaterias.getValueAt(tbMaterias.getSelectedRow(),0))); 
+     
+     ModificarNota modificarNota=new ModificarNota(NotaCambiar);
+     modificarNota.setVisible(true);
+     
+                
+           
+    }//GEN-LAST:event_editarNotaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<Alumno> cbxAlumnos;
+    private javax.swing.JButton editarNota;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -176,5 +196,30 @@ private void cargarCombo() {
             }
         }
         tbMaterias.setModel(modelo);
+        
     }
+    public void cargarTablaAlumnoSeleccionado(){
+       DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        String titulos[]={"Codigo","Nombre","Nota"};
+        modelo.setColumnIdentifiers(titulos);
+        
+        List <Inscripcion> listaInsc= controlInsc.traerInscripciones();
+        if (listaInsc!=null) {
+            for (Inscripcion insc :listaInsc) {
+                if(insc.getIdAlumno().getIdAlumno()==idAlumnoBuscar){
+                    
+                
+                Object[] objetos= {insc.getIdInscripcion(),insc.getIdMateria(),insc.getNota()};
+                modelo.addRow(objetos);
+           }
+                }
+        }
+        tbMaterias.setModel(modelo); 
+    }
+    
 }
