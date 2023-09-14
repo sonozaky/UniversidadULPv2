@@ -151,13 +151,11 @@ int idAlumnoBuscar=0;
 
     private void editarNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarNotaActionPerformed
         // TODO add your handling code here:
-     int NotaCambiar=Integer.parseInt(String.valueOf(tbMaterias.getValueAt(tbMaterias.getSelectedRow(),0))); 
-     
-     ModificarNota modificarNota=new ModificarNota(NotaCambiar);
-     modificarNota.setVisible(true);
-     
-                
-           
+        int NotaCambiar = Integer.parseInt(String.valueOf(tbMaterias.getValueAt(tbMaterias.getSelectedRow(), 0)));
+
+        ModificarNota modificarNota = new ModificarNota(NotaCambiar);
+        modificarNota.setVisible(true);
+        modificarNota.setLocationRelativeTo(null);
     }//GEN-LAST:event_editarNotaActionPerformed
 
 

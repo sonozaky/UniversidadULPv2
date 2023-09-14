@@ -59,8 +59,19 @@ public class InscripcionData {
         }
     }
     
-    public void actualizarNota(int idAlumno, int idMateria, int nota){
-        
+    public void actualizarNota(int notita, int id){
+        String sql = "UPDATE inscripcion SET nota=?  WHERE idInscripcion=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1,notita );
+            ps.setInt(2,id );
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Nota modificada");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
+        }
     }
     
     public List<Inscripcion> traerInscripciones(){
@@ -110,7 +121,29 @@ public class InscripcionData {
         return  materias;
     }
     
-//    public List<Alumno> obtenerAlumnoxMatria(int idMateria){
-//    
-//    }
+        public Inscripcion buscarInscripcionID(int id){
+        String sql="SELECT idInscripcion, nota, idAlumno, idMateria FROM Inscripcion WHERE idInscripcion=?";
+        Inscripcion insc=null;
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs=ps.executeQuery();
+            if (rs.next()) {
+                insc=new Inscripcion();
+                AlumnoData alum=new AlumnoData();
+                MateriaData mater=new MateriaData();
+                insc.setIdInscripcion(id);
+                insc.setNota(rs.getInt("nota"));
+                insc.setIdAlumno(alum.traerAlumnoID(rs.getInt("idAlumno")));
+                insc.setIdMateria(mater.traerMateriaID(rs.getInt("idMateria")));
+            }/*else{
+                JOptionPane.showMessageDialog(null, "No existe el ID de la inscripcion");
+            }*/
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
+        }
+        return insc;
+    }
+
 }

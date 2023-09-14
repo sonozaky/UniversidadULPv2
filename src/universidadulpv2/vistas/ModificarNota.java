@@ -2,21 +2,24 @@
 package universidadulpv2.vistas;
 
 import universidadulpv2.accesoADatos.InscripcionData;
+import universidadulpv2.entidades.Inscripcion;
 
 
 public class ModificarNota extends javax.swing.JFrame {
-int nuevaNota;
-InscripcionData controlIns=null;
+    int nuevaIDiNSC;
+    int nuevaNota;
+    InscripcionData controlIns = null;
+    Inscripcion nueviInscripcion;
     /**
      * Creates new form ModificarNota
      */
     public ModificarNota(int notaCambiar) {
         initComponents();
-       controlIns=new InscripcionData();
-        
-    }
+        controlIns = new InscripcionData();
+        recuperarID(notaCambiar);
 
-   
+    }
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -27,6 +30,8 @@ InscripcionData controlIns=null;
         jNuevaNota = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         jLabel1.setText("Ingresar Nueva Nota");
 
@@ -74,7 +79,7 @@ InscripcionData controlIns=null;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jNuevaNota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardar)
                     .addComponent(salir))
@@ -85,18 +90,15 @@ InscripcionData controlIns=null;
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        // TODO add your handling code here:
-        
+        controlIns.actualizarNota(nuevaNota,nuevaIDiNSC);        
     }//GEN-LAST:event_guardarActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_salirActionPerformed
 
     private void jNuevaNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNuevaNotaActionPerformed
         // TODO add your handling code here:
-        
-        nuevaNota=
     }//GEN-LAST:event_jNuevaNotaActionPerformed
 
     
@@ -107,4 +109,11 @@ InscripcionData controlIns=null;
     private javax.swing.JTextField jNuevaNota;
     private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables
+
+    private void recuperarID(int notaCambiar) {
+        nuevaIDiNSC = notaCambiar;
+        this.nueviInscripcion = controlIns.buscarInscripcionID(nuevaIDiNSC);
+        nuevaNota = nueviInscripcion.getNota();
+    }
+
 }
