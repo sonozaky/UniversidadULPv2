@@ -30,6 +30,7 @@ public class ModificarNota extends javax.swing.JFrame {
         jNuevaNota = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(51, 51, 255));
         setUndecorated(true);
         setResizable(false);
 
@@ -61,14 +62,14 @@ public class ModificarNota extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jNuevaNota, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(guardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addComponent(salir)
                 .addGap(105, 105, 105))
         );
@@ -90,7 +91,8 @@ public class ModificarNota extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        controlIns.actualizarNota(nuevaNota,nuevaIDiNSC);        
+        int notaLoca= Integer.parseInt(jNuevaNota.getText());
+        controlIns.actualizarNota(notaLoca,nuevaIDiNSC);        
     }//GEN-LAST:event_guardarActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
@@ -113,7 +115,6 @@ public class ModificarNota extends javax.swing.JFrame {
     private void recuperarID(int notaCambiar) {
         nuevaIDiNSC = notaCambiar;
         this.nueviInscripcion = controlIns.buscarInscripcionID(nuevaIDiNSC);
-        nuevaNota = nueviInscripcion.getNota();
     }
 
 }

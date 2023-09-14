@@ -5,6 +5,7 @@
 package universidadulpv2.vistas;
 
 
+import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -25,6 +26,9 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
     MateriaData controlMateria = null;
     InscripcionData controlIns = null;
     int idAlumnito;
+    int numerito=0;
+    boolean botonInsc=true;
+    boolean botonNoInsc=true;
     /**
      * Creates new form ManejoInscripcion
      */
@@ -233,10 +237,34 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void rbtnMaterInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMaterInsActionPerformed
-
+        if (botonNoInsc=true) {
+            rbtnMaterNoIns.setSelected(false);
+        }
+        borrarFilas();
+        for (Inscripcion insc : controlIns.traerInscripciones()) {
+            if (insc.getIdAlumno().getIdAlumno() == idAlumnito) {
+                controlIns.obtenerMateriasCursadas(insc.getIdMateria().getIdMateria());
+                modelo.addRow(new Object[]{
+                    insc.getIdMateria().getCodigo(),
+                    insc.getIdMateria().getNombre(),
+                    insc.getIdMateria().getAnioMateria()});
+            }           
+        }
     }//GEN-LAST:event_rbtnMaterInsActionPerformed
 
     private void rbtnMaterNoInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMaterNoInsActionPerformed
+        if (botonInsc=true) {
+            rbtnMaterIns.setSelected(false);
+        }
+        borrarFilas();
+ 
+        for (Materia mattter : controlMateria.traerMaterias()) {
+                    modelo.addRow(new Object[]{
+                        mattter.getCodigo(),
+                        mattter.getNombre(),
+                        mattter.getAnioMateria()});         
+        }
+        
         
     }//GEN-LAST:event_rbtnMaterNoInsActionPerformed
 
@@ -304,5 +332,6 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
             modelo.removeRow(i);
         }
     }
+       
 
 }
