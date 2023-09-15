@@ -7,14 +7,14 @@ import universidadulpv2.accesoADatos.InscripcionData;
 import universidadulpv2.accesoADatos.MateriaData;
 import universidadulpv2.entidades.Inscripcion;
 import universidadulpv2.entidades.Materia;
-
+//Conecta con la base datos
 public class AlumnoXMateria extends javax.swing.JInternalFrame {
     public DefaultTableModel modelo = new DefaultTableModel();
     int idMateriaLoca;
     AlumnoData controlAlumno=null;
     MateriaData controlMateria=null;
     InscripcionData controlIns = null;
-    
+    //genera una copia para usar
     public AlumnoXMateria() {
         controlAlumno=new AlumnoData();
         controlMateria=new MateriaData();
@@ -120,18 +120,20 @@ public class AlumnoXMateria extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//Sale
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void cbxMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMateriasActionPerformed
         borrarFilas();
+        //completa el combox
         Materia materiaSeleccionada = (Materia) cbxMaterias.getSelectedItem();
         idMateriaLoca = materiaSeleccionada.getIdMateria();   
         for (Inscripcion insc : controlIns.traerInscripciones()) {
             if (insc.getIdMateria().getIdMateria()==idMateriaLoca) {
                 controlAlumno.buscarAlumnoID(insc.getIdMateria().getIdMateria());
+                //da forma a la tabla
                 modelo.addRow(new Object[]{
                     insc.getIdAlumno().getIdAlumno(),
                     insc.getIdAlumno().getDni(),

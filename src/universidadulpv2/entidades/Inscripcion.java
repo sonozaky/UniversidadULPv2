@@ -1,7 +1,7 @@
 
 package universidadulpv2.entidades;
 
-
+//Constructor
 public class Inscripcion {
 private int idInscripcion;
     private int nota;

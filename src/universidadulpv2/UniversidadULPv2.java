@@ -17,8 +17,11 @@ public class UniversidadULPv2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+       ///pantalla de principio y fondo 
         Principio nuevoPrincipio=new Principio();
+       //Hace visible
         nuevoPrincipio.setVisible(true);
+       //centra
         nuevoPrincipio.setLocationRelativeTo(null);
     }
     

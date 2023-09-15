@@ -14,13 +14,16 @@ import universidadulpv2.entidades.Alumno;
 
 
 public class AlumnoData {
+    //instanciamos la conecccion
     private Connection con=null;
     
+    //conexcion
     public AlumnoData(){
         con=Conexion.getConexion();
     }
-    
+    //inscribir al alumno
     public void nuevoAlumno(Alumno alumno){
+        //Se declara ????? y despues se completan abajo en orden.
         String sql="INSERT INTO  alumno(dni,apellido,nombre,fechaNacimiento,activo)"
                 + "VALUE (?,?,?,?,?)";
         
@@ -45,6 +48,7 @@ public class AlumnoData {
     }
     
     public void modificarAlumno(Alumno alumno){
+          //Se modifica con ????? y despues se completan abajo en orden.
         String sql = "UPDATE alumno SET dni=?, apellido=?, nombre=?, fechaNacimiento=? "
                 + "WHERE idAlumno=?";        
         try {
@@ -64,6 +68,7 @@ public class AlumnoData {
     }
     
     public void eliminarAlumno(int id){
+        ///se da la llave y se borra mediante ella.
         String sql="UPDATE  alumno SET activo=0 WHERE idAlumno=?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -78,6 +83,7 @@ public class AlumnoData {
     }
     
     public Alumno buscarAlumnoID(int id){
+        //Se declara una vairable para guardar nula, se busca por id
         String sql="SELECT dni, apellido, nombre, fechaNacimiento FROM alumno WHERE idAlumno=?";
         Alumno alumnito=null;
         try {
@@ -103,6 +109,7 @@ public class AlumnoData {
     }
     
     public Alumno buscarAlumnoDNI(String dni){
+          //Se declara una vairable para guardar nula, se busca por DNI
         String sql="SELECT idAlumno,dni, apellido, nombre, fechaNacimiento FROM alumno WHERE dni=?"
                 + "AND estado=1;";
         Alumno alumnito=null;
@@ -129,6 +136,7 @@ public class AlumnoData {
     }
     
     public List<Alumno> traerAlumnos(){
+        //Trae a todos los alumnos activos y genera una lista
         List<Alumno> alumnos = new ArrayList<>();
         try {
             String sql = "SELECT * FROM alumno WHERE activo = 1 ";

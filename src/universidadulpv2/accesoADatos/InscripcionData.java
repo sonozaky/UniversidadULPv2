@@ -15,14 +15,14 @@ import javax.swing.JOptionPane;
 import universidadulpv2.entidades.Inscripcion;
 import universidadulpv2.entidades.Materia;
 
-
+//Instanci conexcion
 public class InscripcionData {
     private Connection con = null;
-
+//Asigna la conexcion
     public InscripcionData() {
         con = Conexion.getConexion();
     }
-    
+    //Carga las inscripciones
     public void guardarInscripcion(Inscripcion insc){
         String sql = "INSERT INTO inscripcion(nota,idAlumno,idMateria)"
                 + "VALUE (?,?,?)";
@@ -44,7 +44,7 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
         }
     }
-    
+    //Borra Inscripcion(ManejoInscripcion)
     public void borrarInscripcionMateria(int idAlumno, int idMateria) {
         String sql = "DELETE FROM inscripcion WHERE idAlumno=? AND idMateria=?";
         try {
@@ -61,7 +61,7 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
         }
     }
-    
+    //Actualiza la nota (ModificarNota)
     public void actualizarNota(int notita, int id){
         String sql = "UPDATE inscripcion SET nota=?  WHERE idInscripcion=?";
         try {
@@ -76,7 +76,7 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");
         }
     }
-    
+    //Trae las inscripciones de la base de datos
     public List<Inscripcion> traerInscripciones(){
         List<Inscripcion> inscripcions = new ArrayList<>();
         try {
@@ -100,7 +100,7 @@ public class InscripcionData {
         }
         return inscripcions;
     }
-    
+    //Genera lista de materias cursadas (ManejoInscripcion)
     public List<Materia> obtenerMateriasCursadas(int in){
         List<Materia> materias = new ArrayList<>();
         String sql="SELECT * FROM materia WHERE idMateria=?";
@@ -124,7 +124,7 @@ public class InscripcionData {
         return  materias;
     }
     
-    
+    //Busca por la id
     public Inscripcion buscarInscripcionID(int id){
         String sql="SELECT idInscripcion, nota, idAlumno, idMateria FROM Inscripcion WHERE idInscripcion=?";
         Inscripcion insc=null;
@@ -150,7 +150,7 @@ public class InscripcionData {
         return insc;
     }
 
-    
+     //Genera lista de materias no cursadas (ManejoInscripcion)
         public List<Materia> obtenerMateriasNoCursadas(int in){
             List<Materia> materias = new ArrayList<>();
             String sql = "SELECT codigo, nombre, anioMateria FROM materia WHERE idMateria NOT IN (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";

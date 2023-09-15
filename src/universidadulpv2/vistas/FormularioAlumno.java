@@ -12,13 +12,14 @@ import universidadulpv2.entidades.Alumno;
 /**
  *
  * @author shion
- */
+ *///Inicia conexcion
 public class FormularioAlumno extends javax.swing.JInternalFrame {
     AlumnoData control=null;
 
     /**
      * Creates new form FormularioAlumno
      */
+    //Asigna la conexcion a una variable
     public FormularioAlumno() {
         control=new AlumnoData();
         initComponents();
@@ -112,7 +113,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -131,7 +132,10 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel5))
                                 .addGap(37, 37, 37)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbtnEstado)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(rbtnEstado)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(dcFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtDni)
@@ -141,9 +145,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                                         .addComponent(btnBuscar))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(dcFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel6)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -168,12 +170,13 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(rbtnEstado))
-                .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(rbtnEstado))
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel6))
                     .addComponent(dcFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -199,7 +202,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//Crea nuevo alumno
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         String dni = txtDni.getText();
         String apellido=txtApellido.getText();
@@ -215,10 +218,11 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
-
+//Buscar Alumno
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         for (Alumno listita : control.traerAlumnos()) {
             String cambio = txtDni.getText();
+            //Filtra por el DNI
             if (cambio.equals(listita.getDni())) {
                 txtApellido.setText(listita.getApellido());
                 txtNombre.setText(listita.getNombre());
@@ -228,7 +232,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
             }
         }    
     }//GEN-LAST:event_btnBuscarActionPerformed
-
+//Crea variable axuliar y la guarda para crear un nuevo alumno en la base de datos
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         for (Alumno listita : control.traerAlumnos()) {
             String cambio = txtDni.getText();
@@ -243,7 +247,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
-
+//Elimina un alumno por el dni
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         for (Alumno listita : control.traerAlumnos()) {
             String cambio = txtDni.getText();

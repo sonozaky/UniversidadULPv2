@@ -14,12 +14,15 @@ import universidadulpv2.entidades.Materia;
  *
  * @author shion
  */
+//Inica Conexcion
 public class FormularioMateria extends javax.swing.JInternalFrame {
     MateriaData control=null;
+    ///Creamos un numero viejo como variable axuliar por si quieren cambiar el id de la materia
     int nuveroViejo;
     /**
      * Creates new form FormularioMateria
      */
+    ///Establece conexcion
     public FormularioMateria() {
         control=new MateriaData();
         initComponents();
@@ -172,7 +175,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+///Busca materia por el codigo
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         for (Materia mate : control.traerMaterias()) {
             int comparar = Integer.parseInt(txtCodigo.getText());
@@ -188,7 +191,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
-
+//Elimina materia desde el codigo
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         for (Materia mate : control.traerMaterias()) {
             int comparar = Integer.parseInt(txtCodigo.getText());
@@ -197,7 +200,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+//Crea nueva materia
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
        
         int cod = Integer.parseInt(txtCodigo.getText());
@@ -207,7 +210,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         Materia nueva=new Materia(cod, nombre, anio, activo);
         control.nuevaMateria(nueva);
     }//GEN-LAST:event_btnNuevoActionPerformed
-
+//Guardar las modificaciones a materia
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         Materia nuevito = new Materia();

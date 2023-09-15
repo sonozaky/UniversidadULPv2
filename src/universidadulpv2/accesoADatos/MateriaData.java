@@ -11,14 +11,14 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import universidadulpv2.entidades.Materia;
 
-
+//Instanci conexcion
 public class MateriaData {
     private Connection con=null;
-    
+    //Asigna la conexcion
     public MateriaData(){
         con=Conexion.getConexion();
     }
-
+//Trae las materias activas de la base de datos
     public List<Materia> traerMaterias() {
         List<Materia> materias = new ArrayList<>();
         try {
@@ -41,7 +41,7 @@ public class MateriaData {
         }
         return materias;
     }
-
+//Pone inactiva una materia (FormularioMateria)
     public void eliminarMateria(int id) {
         String sql = "UPDATE  materia SET activo=0 WHERE idMateria=?";
         try {
@@ -56,7 +56,7 @@ public class MateriaData {
         }
     }
     
-    
+   //Crea una nueva materia y la envia a la base de datos(FormularioMateria)
     public void nuevaMateria(Materia materia) {
         String sql = "INSERT INTO materia (codigo,nombre, anioMateria, activo) "
                 + "VALUES (?, ?, ?, ?)";
@@ -77,7 +77,7 @@ public class MateriaData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla materia");
         }
     }
-    
+    //Modifica una materia y la envia a la base de datos(FormularioMateria)
     public void modificarMateria(Materia mater) {
         String sql = "UPDATE materia SET codigo=?, nombre=?, anioMateria=? WHERE idMateria=?";
         try {
@@ -94,7 +94,7 @@ public class MateriaData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla materia para modificar");
         }
     }
-    
+    //Trae una materia por la id (siempre que este activa)(FormularioMateria)
     public Materia traerMateriaID(int id) {
             Materia matt=new Materia();
         try {

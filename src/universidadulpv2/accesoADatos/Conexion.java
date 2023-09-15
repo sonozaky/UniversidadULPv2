@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-
+//CONEXCION!
 public class Conexion {
     private static final String URL  ="jdbc:mariadb://localhost/";
     private static final String DB = "universidadulp";

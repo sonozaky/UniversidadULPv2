@@ -3,7 +3,7 @@ package universidadulpv2.entidades;
 
 import java.time.LocalDate;
 
-
+//Constructor
 public class Alumno {
  private int idAlumno;
     private String dni;
