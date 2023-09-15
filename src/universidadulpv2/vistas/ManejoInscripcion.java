@@ -261,16 +261,27 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
         }
         borrarFilas();
  
-        for (Materia mattter : controlMateria.traerMaterias()) {
-            for (Inscripcion insc : controlIns.traerInscripciones()) {
-                if (insc.getIdMateria().getIdMateria() != mattter.getIdMateria()) {
-                    modelo.addRow(new Object[]{
-                        mattter.getCodigo(),
-                        mattter.getNombre(),
-                        mattter.getAnioMateria()});
-                }
-            }
+//        for (Materia mattter : controlMateria.traerMaterias()) {
+//            for (Inscripcion insc : controlIns.traerInscripciones()) {
+//                if (insc.getIdMateria().getIdMateria() != mattter.getIdMateria()) {
+//                    modelo.addRow(new Object[]{
+//                        mattter.getCodigo(),
+//                        mattter.getNombre(),
+//                        mattter.getAnioMateria()});
+//                }
+//            }
+//        }
+
+//        int idEstudiante =idAlumnito;
+        List<Materia> noInsc = controlIns.obtenerMateriasNoCursadas(idAlumnito);
+        for (Materia insc : noInsc) {
+            modelo.addRow(new Object[]{
+                insc.getIdMateria(),
+                insc.getNombre(),
+                insc.getAnioMateria()});
+
         }
+
     }//GEN-LAST:event_rbtnMaterNoInsActionPerformed
 
     private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed

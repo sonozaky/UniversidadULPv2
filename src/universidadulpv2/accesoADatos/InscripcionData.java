@@ -2,12 +2,15 @@
 package universidadulpv2.accesoADatos;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import universidadulpv2.entidades.Inscripcion;
 import universidadulpv2.entidades.Materia;
@@ -147,4 +150,25 @@ public class InscripcionData {
         return insc;
     }
 
+    
+        public List<Materia> obtenerMateriasNoCursadas(int in){
+            List<Materia> materias = new ArrayList<>();
+            String sql = "SELECT codigo, nombre, anioMateria FROM materia WHERE idMateria NOT IN (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
+            try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, in);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int subjectId = rs.getInt("codigo");
+                    String subjectName = rs.getString("nombre");
+                    int anioMat = rs.getInt("anioMateria");
+                    Materia subject = new Materia(subjectId, subjectName, anioMat);
+                    materias.add(subject);
+                }
+                ps.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inscripcion " + ex.getMessage());
+            }
+            return materias;
+    }
 }
