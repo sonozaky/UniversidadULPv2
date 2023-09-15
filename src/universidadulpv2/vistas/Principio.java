@@ -4,9 +4,7 @@ package universidadulpv2.vistas;
 import java.awt.Dimension;
 
 
-
 public class Principio extends javax.swing.JFrame {
-
     /**
      * Creates new form Principio
      */
@@ -25,6 +23,7 @@ public class Principio extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         escritorio = new javax.swing.JDesktopPane();
+        nya = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFormAlumno = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -45,15 +44,27 @@ public class Principio extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
+        escritorio.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        nya.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadulpv2/recursos/fondo.gif"))); // NOI18N
+
+        escritorio.setLayer(nya, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 788, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nya)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 585, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nya, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -184,6 +195,7 @@ public class Principio extends javax.swing.JFrame {
         FormularioMateria matForm=new FormularioMateria();
         matForm.setVisible(true);
         escritorio.add(matForm);
+        escritorio.add(nya);
         escritorio.moveToFront(matForm);
         
         Dimension desktopSize = escritorio.getSize();
@@ -198,6 +210,7 @@ public class Principio extends javax.swing.JFrame {
         FormularioAlumno alumForm=new FormularioAlumno(); 
         alumForm.setVisible(true);
         escritorio.add(alumForm);
+        escritorio.add(nya);
         escritorio.moveToFront(alumForm); 
         
         Dimension desktopSize = escritorio.getSize();
@@ -221,6 +234,7 @@ public class Principio extends javax.swing.JFrame {
         ManejoInscripcion ManIns=new ManejoInscripcion();
         ManIns.setVisible(true);
         escritorio.add(ManIns);
+        escritorio.add(nya);
         escritorio.moveToFront(ManIns);
         
         Dimension desktopSize = escritorio.getSize();
@@ -235,6 +249,7 @@ public class Principio extends javax.swing.JFrame {
         ManipulacionNota ManNota=new ManipulacionNota();
         ManNota.setVisible(true);
         escritorio.add(ManNota);
+        escritorio.add(nya);
         escritorio.moveToFront(ManNota);
         
         Dimension desktopSize = escritorio.getSize();
@@ -249,6 +264,7 @@ public class Principio extends javax.swing.JFrame {
         AlumnoXMateria AlumXMateria=new AlumnoXMateria();
         AlumXMateria.setVisible(true);
         escritorio.add(AlumXMateria);
+        escritorio.add(nya);
         escritorio.moveToFront(AlumXMateria);
         
         Dimension desktopSize = escritorio.getSize();
@@ -279,5 +295,6 @@ public class Principio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu menuFormAlumno;
+    private javax.swing.JLabel nya;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,6 @@
 package universidadulpv2.vistas;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -30,8 +29,6 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
     int numerito;
     boolean botonInsc=true;
     boolean botonNoInsc=true;
-    List<Materia> listita=new ArrayList<>();
-    List<Materia> listitaMateria=new ArrayList<>();
 
     /**
      * Creates new form ManejoInscripcion
@@ -260,19 +257,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
             rbtnMaterIns.setSelected(false);
         }
         borrarFilas();
- 
-//        for (Materia mattter : controlMateria.traerMaterias()) {
-//            for (Inscripcion insc : controlIns.traerInscripciones()) {
-//                if (insc.getIdMateria().getIdMateria() != mattter.getIdMateria()) {
-//                    modelo.addRow(new Object[]{
-//                        mattter.getCodigo(),
-//                        mattter.getNombre(),
-//                        mattter.getAnioMateria()});
-//                }
-//            }
-//        }
 
-//        int idEstudiante =idAlumnito;
         List<Materia> noInsc = controlIns.obtenerMateriasNoCursadas(idAlumnito);
         for (Materia insc : noInsc) {
             modelo.addRow(new Object[]{
