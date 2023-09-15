@@ -122,28 +122,6 @@ public class InscripcionData {
     }
     
     
-    public List<Materia> obtenerMateriasNoCursadas(){
-        List<Materia> materias = new ArrayList<>();
-        String sql="SELECT * FROM materia WHERE activo = 1 ?";
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {                
-                Materia newMateria=new Materia();
-                newMateria.setIdMateria(rs.getInt("idMateria"));
-                newMateria.setCodigo(rs.getInt("codigo"));
-                newMateria.setNombre(rs.getString("nombre"));
-                newMateria.setAnioMateria(rs.getInt("anioMateria"));
-                newMateria.setActivo(rs.getBoolean("activo"));
-                materias.add(newMateria);               
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inscripcion " + ex.getMessage());
-        }
-        return  materias;
-    }
-    
     public Inscripcion buscarInscripcionID(int id){
         String sql="SELECT idInscripcion, nota, idAlumno, idMateria FROM Inscripcion WHERE idInscripcion=?";
         Inscripcion insc=null;

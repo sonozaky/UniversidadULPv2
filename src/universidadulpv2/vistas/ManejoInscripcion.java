@@ -5,6 +5,7 @@
 package universidadulpv2.vistas;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -26,9 +27,12 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
     MateriaData controlMateria = null;
     InscripcionData controlIns = null;
     int idAlumnito;
-    int numerito=0;
+    int numerito;
     boolean botonInsc=true;
     boolean botonNoInsc=true;
+    List<Materia> listita=new ArrayList<>();
+    List<Materia> listitaMateria=new ArrayList<>();
+
     /**
      * Creates new form ManejoInscripcion
      */
@@ -243,7 +247,6 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
         borrarFilas();
         for (Inscripcion insc : controlIns.traerInscripciones()) {
             if (insc.getIdAlumno().getIdAlumno() == idAlumnito) {
-                controlIns.obtenerMateriasCursadas(insc.getIdMateria().getIdMateria());
                 modelo.addRow(new Object[]{
                     insc.getIdMateria().getCodigo(),
                     insc.getIdMateria().getNombre(),
@@ -259,13 +262,15 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
         borrarFilas();
  
         for (Materia mattter : controlMateria.traerMaterias()) {
+            for (Inscripcion insc : controlIns.traerInscripciones()) {
+                if (insc.getIdMateria().getIdMateria() != mattter.getIdMateria()) {
                     modelo.addRow(new Object[]{
                         mattter.getCodigo(),
                         mattter.getNombre(),
-                        mattter.getAnioMateria()});         
+                        mattter.getAnioMateria()});
+                }
+            }
         }
-        
-        
     }//GEN-LAST:event_rbtnMaterNoInsActionPerformed
 
     private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed
@@ -333,5 +338,4 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
         }
     }
        
-
 }

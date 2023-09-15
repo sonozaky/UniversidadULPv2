@@ -95,7 +95,7 @@ public class MateriaData {
         }
     }
     
-        public Materia traerMateriaID(int id) {
+    public Materia traerMateriaID(int id) {
             Materia matt=new Materia();
         try {
             String sql = "SELECT * FROM materia WHERE activo = 1 AND idMateria= "+id;
@@ -116,4 +116,5 @@ public class MateriaData {
         }
         return matt;
     }
+
 }
