@@ -131,7 +131,7 @@ public class AlumnoXMateria extends javax.swing.JInternalFrame {
         Materia materiaSeleccionada = (Materia) cbxMaterias.getSelectedItem();
         idMateriaLoca = materiaSeleccionada.getIdMateria();   
         for (Inscripcion insc : controlIns.traerInscripciones()) {
-            if (insc.getIdMateria().getIdMateria()==idMateriaLoca) {
+            if (insc.getIdMateria().getIdMateria()==idMateriaLoca && insc.getIdAlumno().getIdAlumno()!=0) {
                 controlAlumno.buscarAlumnoID(insc.getIdMateria().getIdMateria());
                 //da forma a la tabla
                 modelo.addRow(new Object[]{
