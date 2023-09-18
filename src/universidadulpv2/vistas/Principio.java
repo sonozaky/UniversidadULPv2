@@ -25,8 +25,6 @@ public class Principio extends javax.swing.JFrame {
         escritorio = new javax.swing.JDesktopPane();
         nya = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        menuFormAlumno = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -55,16 +53,12 @@ public class Principio extends javax.swing.JFrame {
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(nya)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(nya, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(nya, javax.swing.GroupLayout.PREFERRED_SIZE, 532, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -83,18 +77,6 @@ public class Principio extends javax.swing.JFrame {
                 .addComponent(escritorio)
                 .addGap(14, 14, 14))
         );
-
-        menuFormAlumno.setText("-");
-        menuFormAlumno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuFormAlumnoActionPerformed(evt);
-            }
-        });
-
-        jMenuItem1.setText("Formulario de Alumno");
-        menuFormAlumno.add(jMenuItem1);
-
-        jMenuBar1.add(menuFormAlumno);
 
         jMenu1.setText("Alumno");
 
@@ -184,10 +166,6 @@ public class Principio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void menuFormAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFormAlumnoActionPerformed
-    
-    }//GEN-LAST:event_menuFormAlumnoActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         escritorio.removeAll();
@@ -286,7 +264,6 @@ public class Principio extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -294,7 +271,6 @@ public class Principio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JMenu menuFormAlumno;
     private javax.swing.JLabel nya;
     // End of variables declaration//GEN-END:variables
 }

@@ -29,7 +29,7 @@ public class AlumnoData {
         
         try {
             PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, alumno.getDni());
+            ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
             ps.setDate(4,Date.valueOf(alumno.getFechaNacimiento()));
@@ -53,7 +53,7 @@ public class AlumnoData {
                 + "WHERE idAlumno=?";        
         try {
             PreparedStatement ps=con.prepareStatement(sql);
-            ps.setString(1, alumno.getDni());
+            ps.setInt(1, alumno.getDni());
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
             ps.setDate(4,Date.valueOf(alumno.getFechaNacimiento()));
@@ -93,7 +93,7 @@ public class AlumnoData {
             if (rs.next()) {
                 alumnito=new Alumno();
                 alumnito.setIdAlumno(id);
-                alumnito.setDni(rs.getString("dni"));
+                alumnito.setDni(rs.getInt("dni"));
                 alumnito.setApellido(rs.getString("apellido"));
                 alumnito.setNombre(rs.getString("nombre"));
                 alumnito.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
@@ -120,7 +120,7 @@ public class AlumnoData {
             if (rs.next()) {
                 alumnito=new Alumno();
                 alumnito.setIdAlumno(rs.getInt("idAlumno"));
-                alumnito.setDni(rs.getString("dni"));
+                alumnito.setDni(rs.getInt("dni"));
                 alumnito.setApellido(rs.getString("apellido"));
                 alumnito.setNombre(rs.getString("nombre"));
                 alumnito.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
@@ -146,7 +146,7 @@ public class AlumnoData {
                 Alumno alumno = new Alumno();
 
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
-                alumno.setDni(rs.getString("dni"));
+                alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
@@ -170,7 +170,7 @@ public class AlumnoData {
             while (rs.next()) {
 
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
-                alumno.setDni(rs.getString("dni"));
+                alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());

@@ -6,7 +6,7 @@ import java.time.LocalDate;
 //Constructor
 public class Alumno {
  private int idAlumno;
-    private String dni;
+    private int dni;
     private String apellido;
     private String nombre;
     private LocalDate fechaNacimiento;
@@ -15,13 +15,13 @@ public class Alumno {
     public Alumno() {
     }
 
-    public Alumno(String dni, String apellido, String nombre) {
+    public Alumno(int dni, String apellido, String nombre) {
         this.dni = dni;
         this.apellido = apellido;
         this.nombre = nombre;
     }
 
-    public Alumno(int idAlumno, String dni, String apellido, String nombre) {
+    public Alumno(int idAlumno, int dni, String apellido, String nombre) {
         this.idAlumno = idAlumno;
         this.dni = dni;
         this.apellido = apellido;
@@ -30,7 +30,7 @@ public class Alumno {
     
     
 
-    public Alumno(String dni, String apellido, String nombre, LocalDate fechaNacimiento, boolean activo) {
+    public Alumno(int dni, String apellido, String nombre, LocalDate fechaNacimiento, boolean activo) {
         this.dni = dni;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -38,7 +38,7 @@ public class Alumno {
         this.activo = activo;
     }
 
-    public Alumno(int idAlumno, String dni, String apellido, String nombre, LocalDate fechaNacimiento, boolean activo) {
+    public Alumno(int idAlumno, int dni, String apellido, String nombre, LocalDate fechaNacimiento, boolean activo) {
         this.idAlumno = idAlumno;
         this.dni = dni;
         this.apellido = apellido;
@@ -55,11 +55,11 @@ public class Alumno {
         this.idAlumno = idAlumno;
     }
 
-    public String getDni() {
+    public int getDni() {
         return dni;
     }
 
-    public void setDni(String dni) {
+    public void setDni(int dni) {
         this.dni = dni;
     }
 
