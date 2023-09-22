@@ -7,7 +7,6 @@ import universidadulpv2.entidades.Inscripcion;
 
 public class ModificarNota extends javax.swing.JFrame {
     int nuevaIDiNSC;
-    int nuevaNota;
     InscripcionData controlIns = null;
     Inscripcion nueviInscripcion;
     /**
@@ -79,12 +78,6 @@ public class ModificarNota extends javax.swing.JFrame {
 
         jLabel1.setText("Ingresar Nueva Nota");
 
-        jNuevaNota.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jNuevaNotaActionPerformed(evt);
-            }
-        });
-
         guardar.setText("Guardar");
         guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,12 +147,7 @@ public class ModificarNota extends javax.swing.JFrame {
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         this.dispose();
     }//GEN-LAST:event_salirActionPerformed
-
-    private void jNuevaNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNuevaNotaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jNuevaNotaActionPerformed
-
-    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton guardar;

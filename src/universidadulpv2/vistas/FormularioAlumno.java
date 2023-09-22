@@ -8,23 +8,14 @@ import universidadulpv2.accesoADatos.AlumnoData;
 import universidadulpv2.entidades.Alumno;
 
 
-
-/**
- *
- * @author shion
- *///Inicia conexcion
 public class FormularioAlumno extends javax.swing.JInternalFrame {
     AlumnoData control=null;
     int numViejo;
 
-    /**
-     * Creates new form FormularioAlumno
-     */
-    //Asigna la conexcion a una variable
     public FormularioAlumno() {
         control=new AlumnoData();
         initComponents();
-
+        dcFechaNacimiento.getDateEditor().getUiComponent().setEnabled(false);
     }
 
     /**
@@ -81,6 +72,12 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
             }
         });
 
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadulpv2/recursos/logoLimpiar.png"))); // NOI18N
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,6 +120,8 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
             }
         });
 
+        dcFechaNacimiento.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -156,8 +155,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(rbtnEstado)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(dcFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(dcFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtDni)
@@ -250,11 +248,11 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
-//Buscar Alumno
+
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiar();       
     }//GEN-LAST:event_btnLimpiarActionPerformed
-//Crea variable axuliar y la guarda para crear un nuevo alumno en la base de datos
+
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         int cambio = Integer.parseInt(txtDni.getText());
         Date fechaNacimiento=dcFechaNacimiento.getDate();
@@ -301,7 +299,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
-        // TODO add your handling code here:
         if (txtDni.getText().length()>=8) {
             evt.consume();
         }
@@ -313,7 +310,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDniKeyTyped
 
     private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
-        // TODO add your handling code here:
         if (txtApellido.getText().length()>=25) {
             evt.consume();
         }
@@ -327,6 +323,21 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtApellidoKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        if (txtNombre.getText().length()>=25) {
+            evt.consume();
+        }
+        
+        int key = evt.getKeyChar();
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

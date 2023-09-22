@@ -4,25 +4,13 @@
  */
 package universidadulpv2.vistas;
 
-import javax.swing.JOptionPane;
 import universidadulpv2.accesoADatos.MateriaData;
 import universidadulpv2.entidades.Materia;
 
 
-
-/**
- *
- * @author shion
- */
-//Inica Conexcion
 public class FormularioMateria extends javax.swing.JInternalFrame {
     MateriaData control=null;
-    ///Creamos un numero viejo como variable axuliar por si quieren cambiar el id de la materia
     int nuveroViejo;
-    /**
-     * Creates new form FormularioMateria
-     */
-    ///Establece conexcion
     public FormularioMateria() {
         control=new MateriaData();
         initComponents();
@@ -64,6 +52,24 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         jLabel4.setText("Año");
 
         jLabel5.setText("Estado");
+
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
+        txtAnio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAnioKeyTyped(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -247,6 +253,43 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        if (txtCodigo.getText().length()>=3) {
+            evt.consume();
+        }
+        int key = evt.getKeyChar();
+        boolean num= key >= 48 && key <= 57;
+        if (!num) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        if (txtNombre.getText().length()>=25) {
+            evt.consume();
+        }
+        
+        int key = evt.getKeyChar();
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtAnioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnioKeyTyped
+        if (txtAnio.getText().length()>=1) {
+            evt.consume();
+        }
+        int key = evt.getKeyChar();
+        boolean num= key >= 48 && key <= 57;
+        if (!num) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtAnioKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

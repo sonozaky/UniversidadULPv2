@@ -31,7 +31,7 @@ int idAlumnoBuscar=0;
         controlInsc = new InscripcionData();
         initComponents();
         cargarCombo();
-        cargarTabla();
+//        cargarTabla();
     }
 
     /**
@@ -142,6 +142,7 @@ int idAlumnoBuscar=0;
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void cbxAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAlumnosActionPerformed
+        cargarTabla();
         Alumno alumnoSeleccionado=(Alumno)cbxAlumnos.getSelectedItem();
         idAlumnoBuscar=alumnoSeleccionado.getIdAlumno();
         cargarTablaAlumnoSeleccionado();

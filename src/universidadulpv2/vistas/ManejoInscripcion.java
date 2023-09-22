@@ -24,7 +24,6 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
     public DefaultTableModel modelo = new DefaultTableModel(){
         @Override
         public boolean isCellEditable(int row, int column) {
-        // Make all cells non-editable
         return false;
     }
     };
@@ -270,9 +269,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
                 insc.getIdMateria(),
                 insc.getNombre(),
                 insc.getAnioMateria()});
-
         }
-
     }//GEN-LAST:event_rbtnMaterNoInsActionPerformed
 
     private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed
