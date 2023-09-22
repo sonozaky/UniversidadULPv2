@@ -21,7 +21,13 @@ import universidadulpv2.entidades.Materia;
  * @author shion
  */
 public class ManejoInscripcion extends javax.swing.JInternalFrame {
-    public DefaultTableModel modelo = new DefaultTableModel();
+    public DefaultTableModel modelo = new DefaultTableModel(){
+        @Override
+        public boolean isCellEditable(int row, int column) {
+        // Make all cells non-editable
+        return false;
+    }
+    };
     AlumnoData controlAlumn = null;
     MateriaData controlMateria = null;
     InscripcionData controlIns = null;
@@ -333,5 +339,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
             modelo.removeRow(i);
         }
     }
+    
+    
        
 }

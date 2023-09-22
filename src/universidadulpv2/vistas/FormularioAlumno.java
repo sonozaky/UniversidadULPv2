@@ -53,8 +53,8 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         btnEliminar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        dcFechaNacimiento = new com.toedter.calendar.JDateChooser();
         btnBuscar = new javax.swing.JButton();
+        dcFechaNacimiento = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
         jLabel1.setText("Alumno");
@@ -68,6 +68,18 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         jLabel5.setText("Estado");
 
         jLabel6.setText("Fecha de Nacimiento");
+
+        txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDniKeyTyped(evt);
+            }
+        });
+
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyTyped(evt);
+            }
+        });
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadulpv2/recursos/logoLimpiar.png"))); // NOI18N
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -143,9 +155,9 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(rbtnEstado)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(dcFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(69, 69, 69))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(dcFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtDni)
@@ -287,6 +299,34 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
+        // TODO add your handling code here:
+        if (txtDni.getText().length()>=8) {
+            evt.consume();
+        }
+        int key = evt.getKeyChar();
+        boolean num= key >= 48 && key <= 57;
+        if (!num) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDniKeyTyped
+
+    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
+        // TODO add your handling code here:
+        if (txtApellido.getText().length()>=25) {
+            evt.consume();
+        }
+        
+        int key = evt.getKeyChar();
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApellidoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

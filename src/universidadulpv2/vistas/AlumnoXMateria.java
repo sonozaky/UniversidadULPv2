@@ -9,7 +9,13 @@ import universidadulpv2.entidades.Inscripcion;
 import universidadulpv2.entidades.Materia;
 //Conecta con la base datos
 public class AlumnoXMateria extends javax.swing.JInternalFrame {
-    public DefaultTableModel modelo = new DefaultTableModel();
+    public DefaultTableModel modelo = new DefaultTableModel(){
+        @Override
+        public boolean isCellEditable(int row, int column) {
+        // Make all cells non-editable
+        return false;
+    }
+    };
     int idMateriaLoca;
     AlumnoData controlAlumno=null;
     MateriaData controlMateria=null;
@@ -173,4 +179,5 @@ public class AlumnoXMateria extends javax.swing.JInternalFrame {
             modelo.removeRow(i);
         }
     }
+    
 }
