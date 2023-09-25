@@ -14,6 +14,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
     public FormularioMateria() {
         control=new MateriaData();
         initComponents();
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null); 
     }
 
     /**

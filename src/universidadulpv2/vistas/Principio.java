@@ -44,7 +44,7 @@ public class Principio extends javax.swing.JFrame {
 
         escritorio.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        nya.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadulpv2/recursos/fondo.gif"))); // NOI18N
+        nya.setIcon(new javax.swing.ImageIcon(getClass().getResource("/universidadulpv2/recursos/fondo.jpg"))); // NOI18N
 
         escritorio.setLayer(nya, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -52,30 +52,22 @@ public class Principio extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(escritorioLayout.createSequentialGroup()
-                .addComponent(nya)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(nya, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(nya, javax.swing.GroupLayout.PREFERRED_SIZE, 532, Short.MAX_VALUE)
+            .addComponent(nya, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(escritorio)
-                .addContainerGap())
+            .addComponent(escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(escritorio)
-                .addGap(14, 14, 14))
+            .addComponent(escritorio)
         );
 
         jMenu1.setText("Alumno");

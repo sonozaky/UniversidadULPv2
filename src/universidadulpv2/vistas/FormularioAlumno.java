@@ -16,6 +16,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         control=new AlumnoData();
         initComponents();
         dcFechaNacimiento.getDateEditor().getUiComponent().setEnabled(false);
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null); 
     }
 
     /**
@@ -318,8 +319,9 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         boolean mayusculas = key >= 65 && key <= 90;
         boolean minusculas = key >= 97 && key <= 122;
         boolean espacio = key == 32;
+        boolean enie = key =='ñ';
 
-        if (!(minusculas || mayusculas || espacio)) {
+        if (!(minusculas || mayusculas || espacio || enie)) {
             evt.consume();
         }
     }//GEN-LAST:event_txtApellidoKeyTyped

@@ -137,9 +137,9 @@ public class InscripcionData {
                 insc.setNota(rs.getInt("nota"));
                 insc.setIdAlumno(alum.traerAlumnoID(rs.getInt("idAlumno")));
                 insc.setIdMateria(mater.traerMateriaID(rs.getInt("idMateria")));
-            }/*else{
+            }else if(id==0){
                 JOptionPane.showMessageDialog(null, "No existe el ID de la inscripcion");
-            }*/
+            }
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripcion");

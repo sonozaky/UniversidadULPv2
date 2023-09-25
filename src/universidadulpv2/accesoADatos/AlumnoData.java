@@ -49,7 +49,7 @@ public class AlumnoData {
     
     public void modificarAlumno(Alumno alumno){
           //Se modifica con ????? y despues se completan abajo en orden.
-        String sql = "UPDATE alumno SET dni=?, apellido=?, nombre=?, fechaNacimiento=? "
+        String sql = "UPDATE alumno SET dni=?, apellido=?, nombre=?, fechaNacimiento=?"
                 + "WHERE idAlumno=?";        
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -98,9 +98,9 @@ public class AlumnoData {
                 alumnito.setNombre(rs.getString("nombre"));
                 alumnito.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
                 alumnito.setActivo(true);
-            }/*else{
+            }else if (id==0){
                 JOptionPane.showMessageDialog(null, "No existe el ID del alumno");
-            }*/
+            }
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alumno");
