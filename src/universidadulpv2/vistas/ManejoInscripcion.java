@@ -260,6 +260,7 @@ public class ManejoInscripcion extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_rbtnMaterInsActionPerformed
 
     private void rbtnMaterNoInsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMaterNoInsActionPerformed
+         btnInscribir.setEnabled(true);
         if (botonInsc=true) {
             rbtnMaterIns.setSelected(false);
         }
