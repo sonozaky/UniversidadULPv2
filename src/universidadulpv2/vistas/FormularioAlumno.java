@@ -319,9 +319,10 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         boolean mayusculas = key >= 65 && key <= 90;
         boolean minusculas = key >= 97 && key <= 122;
         boolean espacio = key == 32;
-        boolean enie = key =='ñ';
+        boolean enieMin = key == 'ñ';
+        boolean enieMay = key == 'Ñ';
 
-        if (!(minusculas || mayusculas || espacio || enie)) {
+        if (!(minusculas || mayusculas || espacio || enieMin || enieMay)) {
             evt.consume();
         }
     }//GEN-LAST:event_txtApellidoKeyTyped
@@ -335,8 +336,10 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         boolean mayusculas = key >= 65 && key <= 90;
         boolean minusculas = key >= 97 && key <= 122;
         boolean espacio = key == 32;
+        boolean enieMin = key == 'ñ';
+        boolean enieMay = key == 'Ñ';
 
-        if (!(minusculas || mayusculas || espacio)) {
+        if (!(minusculas || mayusculas || espacio|| enieMin || enieMay)) {
             evt.consume();
         }
     }//GEN-LAST:event_txtNombreKeyTyped
